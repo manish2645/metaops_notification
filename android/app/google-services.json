@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "140320986681",
+    "project_id": "metaops-80db6",
+    "storage_bucket": "metaops-80db6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:140320986681:android:a101304b6dae361eff9fe8",
+        "android_client_info": {
+          "package_name": "com.xenonstack.metaops"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "140320986681-d7upc1mj626kgvfmlveu4fi54rgjqut4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-c8vZc1s6fOi1t37ayV5MR7542ZOR15o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "140320986681-d7upc1mj626kgvfmlveu4fi54rgjqut4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
