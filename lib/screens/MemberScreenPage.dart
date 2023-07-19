@@ -34,18 +34,13 @@ class _MemberScanState extends State<MemberScan> {
       print(value);
       deviceToken = value;
     });
+  }
 
-    checkedList = [false, false];
-  }
-  List<bool> checkedList = [];
-  void onCheckboxChanged(int index, bool newValue) {
-    setState(() {
-      checkedList[index] = newValue;
-    });
-  }
+  List<bool> checkedList = [false, false];
 
   @override
   Widget build(BuildContext context) {
+
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
@@ -265,7 +260,7 @@ class _MemberScanState extends State<MemberScan> {
                                         builder: (BuildContext context) => AlertDialog(
                                           insetPadding: const EdgeInsets.all(15),
                                           contentPadding: const EdgeInsets.all(5),
-                                          actionsPadding: const EdgeInsets.only(bottom: 15, right: 15 ,top:30),
+                                          actionsPadding: const EdgeInsets.all(20),
                                           shape: const RoundedRectangleBorder(
                                             borderRadius: BorderRadius.all(
                                               Radius.circular(15.0),
@@ -350,9 +345,8 @@ class _MemberScanState extends State<MemberScan> {
                                                                 ],
                                                               ),
                                                             ),
-                                                            Positioned(
-                                                              top: -5,
-                                                              right: -5,
+                                                            Align(
+                                                              alignment: Alignment.topRight,
                                                               child: Checkbox(
                                                                 shape: RoundedRectangleBorder(
                                                                   borderRadius: BorderRadius.circular(5),
@@ -365,7 +359,7 @@ class _MemberScanState extends State<MemberScan> {
                                                                 value: checkedList[0],
                                                                 onChanged: (newValue) {
                                                                   setState(() {
-                                                                    onCheckboxChanged(0, newValue ?? false);
+                                                                    checkedList[0] = !checkedList[0];
                                                                   });
                                                                 },
                                                               ),
@@ -418,9 +412,8 @@ class _MemberScanState extends State<MemberScan> {
                                                                 ],
                                                               ),
                                                             ),
-                                                            Positioned(
-                                                              top: -5,
-                                                              right: -5,
+                                                            Align(
+                                                              alignment: Alignment.topRight,
                                                               child: Checkbox(
                                                                 shape: RoundedRectangleBorder(
                                                                   borderRadius: BorderRadius.circular(5),
@@ -433,7 +426,7 @@ class _MemberScanState extends State<MemberScan> {
                                                                 value: checkedList[1],
                                                                 onChanged: (newValue) {
                                                                   setState(() {
-                                                                    onCheckboxChanged(1, newValue ?? false);
+                                                                    checkedList[1] = !checkedList[1];
                                                                   });
                                                                 },
                                                               ),
