@@ -200,7 +200,7 @@ class _UserDetailsState extends State<UserDetails> {
                                     ),
                                   ),
                                   filled: true,
-                                  fillColor: Color(0x00f9f9f9),
+                                  fillColor: Color.fromARGB(255, 249, 249, 249),
                                   hintText: 'Full Name',
                                   hintStyle: TextStyle(
                                       fontFamily: 'Roboto-Regular',
@@ -261,7 +261,7 @@ class _UserDetailsState extends State<UserDetails> {
                                     ),
                                   ),
                                   filled: true,
-                                 fillColor: Color(0x00f9f9f9),
+                                 fillColor: Color.fromARGB(255, 249, 249, 249),
                                   hintText: '10 digit number',
                                   hintStyle: TextStyle(
                                       fontFamily: 'Roboto-Regular',
@@ -340,7 +340,7 @@ class _UserDetailsState extends State<UserDetails> {
                                     ),
                                   ),
                                   filled: true,
-                                 fillColor: Color(0x00f9f9f9),
+                                 fillColor: Color.fromARGB(255, 249, 249, 249),
                                   hintText: 'xyz@gmail.com',
                                   hintStyle: TextStyle(
                                       fontFamily: 'Roboto-Regular',
@@ -408,7 +408,7 @@ class _UserDetailsState extends State<UserDetails> {
                                     ),
                                   ),
                                   filled: true,
-                                 fillColor: Color(0x00f9f9f9),
+                                 fillColor: Color.fromARGB(255, 249, 249, 249),
                                   hintText: 'DD/MM/YYYY',
                                   hintStyle: TextStyle(
                                       fontFamily: 'Roboto-Regular',
@@ -463,7 +463,7 @@ class _UserDetailsState extends State<UserDetails> {
                                 child: DropdownButtonFormField2<String>(
                                   isExpanded: true,
                                   decoration: InputDecoration(
-                                      fillColor: Color(0x00f9f9f9),
+                                      fillColor: Color.fromARGB(255, 249, 249, 249),
                                       filled: true,
                                       focusedBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
@@ -604,7 +604,7 @@ class _UserDetailsState extends State<UserDetails> {
                                         ),
                                       ),
                                       filled: true,
-                                    fillColor: Color(0x00f9f9f9),
+                                    fillColor: Color.fromARGB(255, 249, 249, 249),
                                   ),
                                   value: _religion,
                                   buttonStyleData: const ButtonStyleData(
@@ -727,7 +727,7 @@ class _UserDetailsState extends State<UserDetails> {
                                   ),
                                 ),
                                 filled: true,
-                               fillColor: Color(0x00f9f9f9),
+                               fillColor: Color.fromARGB(255, 249, 249, 249),
                                 hintText: '6 digit pincode',
                                 hintStyle: TextStyle(
                                     fontFamily: 'Roboto-Regular',
@@ -806,7 +806,7 @@ class _UserDetailsState extends State<UserDetails> {
                                   ),
                                 ),
                                 filled: true,
-                               fillColor: Color(0x00f9f9f9),
+                               fillColor: Color.fromARGB(255, 249, 249, 249),
                                 hintText: 'Bhoa',
                                 hintStyle: TextStyle(
                                     fontFamily: 'Roboto-Regular',
@@ -870,7 +870,7 @@ class _UserDetailsState extends State<UserDetails> {
                                   ),
                                 ),
                                 filled: true,
-                               fillColor: Color(0x00f9f9f9),
+                               fillColor: Color.fromARGB(255, 249, 249, 249),
                                 hintText: 'India',
                                 hintStyle: TextStyle(
                                     fontFamily: 'Roboto-Regular',
@@ -920,7 +920,7 @@ class _UserDetailsState extends State<UserDetails> {
                               child: DropdownButtonFormField2<String>(
                                 isExpanded: true,
                                 decoration: InputDecoration(
-                                    fillColor: Color(0x00f9f9f9),
+                                    fillColor: Color.fromARGB(255, 249, 249, 249),
                                     filled: true,
                                     focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
@@ -1018,7 +1018,7 @@ class _UserDetailsState extends State<UserDetails> {
                               child: DropdownButtonFormField2<String>(
                                 isExpanded: true,
                                 decoration: InputDecoration(
-                                    fillColor: Color(0x00f9f9f9),
+                                    fillColor: Color.fromARGB(255, 249, 249, 249),
                                     filled: true,
                                     focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
@@ -1134,7 +1134,7 @@ class _UserDetailsState extends State<UserDetails> {
                                   ),
                                 ),
                                 filled: true,
-                               fillColor: Color(0x00f9f9f9),
+                               fillColor: Color.fromARGB(255, 249, 249, 249),
                                 hintText: 'Mathura',
                                 hintStyle: TextStyle(
                                     fontFamily: 'Roboto-Regular',
@@ -1198,7 +1198,7 @@ class _UserDetailsState extends State<UserDetails> {
                                   ),
                                 ),
                                 filled: true,
-                               fillColor: Color(0x00f9f9f9),
+                               fillColor: Color.fromARGB(255, 249, 249, 249),
                                 hintText: '8-B, Basement Floor, Jangpura',
                                 hintStyle: TextStyle(
                                     fontFamily: 'Roboto-Regular',

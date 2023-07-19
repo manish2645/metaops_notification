@@ -16,11 +16,6 @@ class NotificationServices {
         message.notification!.title.toString(),
         message.notification!.body.toString(),
       );
-
-      // Open the NotificationPage when a notification is clicked
-      // if (message.notification != null) {
-      //   Navigator.pushNamed(context, '/notification');
-      // }
     });
   }
 

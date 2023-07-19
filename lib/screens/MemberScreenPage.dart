@@ -1027,10 +1027,6 @@ Future<void> sendPushNotification(
       'body': body,
     },
     'to': deviceToken
-    // 'data': {
-    //   'click_action': 'FLUTTER_NOTIFICATION_CLICK',
-    //   'page': 'notification',
-    // },
   };
 
   final response = await http.post(
