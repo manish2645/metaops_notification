@@ -1,24 +1,57 @@
-
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-class NotificationServices{
+class NotificationServices {
   FirebaseMessaging messaging = FirebaseMessaging.instance;
-  final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+  final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
+  FlutterLocalNotificationsPlugin();
 
   void firebaseInit(){
-    FirebaseMessaging.onMessage.listen((event) {
-      // var androidInitializationSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
-      print(event.notification!.title.toString());
-      print(event.notification!.body.toString());
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      print(message.notification!.title);
+      print(message.notification!.body);
+
+      // Display a local notification
+      displayNotification(
+        message.notification!.title.toString(),
+        message.notification!.body.toString(),
+      );
+
+      // Open the NotificationPage when a notification is clicked
+      // if (message.notification != null) {
+      //   Navigator.pushNamed(context, '/notification');
+      // }
     });
   }
 
-  void initLocalNotification(){
+  Future<void> displayNotification(String title, String body) async {
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+    AndroidNotificationDetails('id', 'name',
+        importance: Importance.max, priority: Priority.high);
 
+    const NotificationDetails platformChannelSpecifics =
+    NotificationDetails(android: androidPlatformChannelSpecifics);
+
+    await _flutterLocalNotificationsPlugin.show(
+      0,
+      title,
+      body,
+      platformChannelSpecifics,
+      payload: 'notification_payload',
+    );
   }
 
-  void requestNotificationPermission() async{
+  void initLocalNotification() {
+    const AndroidInitializationSettings initializationSettingsAndroid =
+    AndroidInitializationSettings('@mipmap/ic_launcher');
+
+    const InitializationSettings initializationSettings =
+    InitializationSettings(android: initializationSettingsAndroid);
+
+    _flutterLocalNotificationsPlugin.initialize(initializationSettings);
+  }
+
+  void requestNotificationPermission() async {
     NotificationSettings settings = await messaging.requestPermission(
       alert: true,
       announcement: true,
@@ -29,26 +62,24 @@ class NotificationServices{
       sound: true,
     );
 
-    if(settings.authorizationStatus == AuthorizationStatus.authorized){
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       print('user granted permission');
-    }else if(settings.authorizationStatus == AuthorizationStatus.provisional){
+    } else if (settings.authorizationStatus == AuthorizationStatus.provisional) {
       print('user granted provisional permission');
-    }else{
+    } else {
       print('user denied permission');
     }
-    
   }
 
-  Future<String> getDeviceToken() async{
+  Future<String> getDeviceToken() async {
     String? token = await messaging.getToken();
     return token!;
   }
 
   void isTokenRefresh() {
     messaging.onTokenRefresh.listen((event) {
-        event.toString();
-        print('refresh');
+      event.toString();
+      print('refresh');
     });
   }
-
 }

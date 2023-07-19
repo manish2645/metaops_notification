@@ -9,6 +9,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:metaops/comminuty_notification%20services.dart';
 import '../widgets/comunity_edit_poll_widget.dart';
 import 'community_onboard_import_page.dart';
+import 'package:http/http.dart' as http;
 
 class MemberScan extends StatefulWidget {
   const MemberScan({super.key});
@@ -17,10 +18,10 @@ class MemberScan extends StatefulWidget {
 }
 
 String url = "https://network-45465464.min.co/share-community";
+NotificationServices notificationServices = NotificationServices();
+String deviceToken = "";
 
 class _MemberScanState extends State<MemberScan> {
-
-  NotificationServices notificationServices = NotificationServices();
 
   @override
   void initState() {
@@ -31,6 +32,15 @@ class _MemberScanState extends State<MemberScan> {
     notificationServices.getDeviceToken().then((value){
       print('device token');
       print(value);
+      deviceToken = value;
+    });
+
+    checkedList = [false, false];
+  }
+  List<bool> checkedList = [];
+  void onCheckboxChanged(int index, bool newValue) {
+    setState(() {
+      checkedList[index] = newValue;
     });
   }
 
@@ -247,7 +257,6 @@ class _MemberScanState extends State<MemberScan> {
                                   ),
                                 ),
 
-
                                 Expanded(
                                   child: GestureDetector(
                                     onTap: () {
@@ -256,7 +265,7 @@ class _MemberScanState extends State<MemberScan> {
                                         builder: (BuildContext context) => AlertDialog(
                                           insetPadding: const EdgeInsets.all(15),
                                           contentPadding: const EdgeInsets.all(5),
-                                          actionsPadding: const EdgeInsets.only(bottom: 15, right: 15),
+                                          actionsPadding: const EdgeInsets.only(bottom: 15, right: 15 ,top:30),
                                           shape: const RoundedRectangleBorder(
                                             borderRadius: BorderRadius.all(
                                               Radius.circular(15.0),
@@ -265,6 +274,7 @@ class _MemberScanState extends State<MemberScan> {
                                           content: Container(
                                               padding: EdgeInsets.symmetric(horizontal: 10),
                                               height: screenHeight*0.30,
+                                              width: MediaQuery.of(context).size.width*0.90,
                                               child: Column(
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
@@ -290,63 +300,153 @@ class _MemberScanState extends State<MemberScan> {
                                                       )
                                                     ],
                                                   ),
-                                                  Container(
-                                                    padding: EdgeInsets.all(10),
-                                                    child: Row(
-                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: [
-                                                        Container(
-                                                          height: 152,
-                                                          width: 149,
-                                                          decoration: BoxDecoration(
-                                                              borderRadius: BorderRadius.all(Radius.circular(15)),
-                                                              color: Color.fromARGB(255,224,255,225)
-                                                          ),
-                                                          child: Column(
-                                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                            children: [
-                                                              Icon(Icons.whatshot,color: Colors.green,),
-                                                              Text("Whatsapp",
-                                                                style: TextStyle(
-                                                                  fontWeight: FontWeight.normal,
-                                                                  fontSize: 12,
-                                                                  fontFamily: 'Roboto-Medium',
-                                                                  color: Color.fromARGB(255,51,53,125),
-                                                                ),
-                                                              )
-                                                            ],
-                                                          ),
+                                            Expanded(
+                                              child: Container(
+                                                padding: EdgeInsets.all(10),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Expanded(
+                                                      flex: 1,
+                                                      child: Container(
+                                                        decoration: BoxDecoration(
+                                                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                                                          color: Color.fromARGB(255, 224, 255, 225),
+                                                          boxShadow: checkedList[0]
+                                                              ? [
+                                                            BoxShadow(
+                                                              color: Color(0xff2D2F74).withOpacity(0.2),
+                                                              spreadRadius: 2,
+                                                              blurRadius: 8,
+                                                              offset: Offset(0, 4),
+                                                            ),
+                                                          ]
+                                                              : [],
                                                         ),
-                                                        SizedBox(width: 10,),
-                                                        Container(
-                                                          height: 152,
-                                                          width: 149,
-                                                          decoration: BoxDecoration(
-                                                              borderRadius: BorderRadius.all(Radius.circular(15)),
-                                                              color: Color.fromARGB(255,255,246,221)
-                                                          ),
-                                                          child: Column(
-                                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                            children: [
-                                                              Icon(Icons.email,color: Colors.yellow,),
-                                                              Text("Email",
-                                                                style: TextStyle(
-                                                                  fontWeight: FontWeight.normal,
-                                                                  fontSize: 12,
-                                                                  fontFamily: 'Roboto-Medium',
-                                                                  color: Color.fromARGB(255,51,53,125),
-
+                                                        child: Stack(
+                                                          children: [
+                                                            Align(
+                                                              alignment: Alignment.center,
+                                                              child: Column(
+                                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                                children: [
+                                                                  Image.asset(
+                                                                    'assets/comunity_notification_images/community_notify_whatsapp_icon.png',
+                                                                    height: 60,
+                                                                    width: 60,
+                                                                  ),
+                                                                  SizedBox(height: 20,),
+                                                                  Text(
+                                                                    "Whatsapp",
+                                                                    style: TextStyle(
+                                                                      fontWeight: FontWeight.bold,
+                                                                      fontSize: 12,
+                                                                      fontFamily: 'Roboto-Medium',
+                                                                      color: Color.fromARGB(255, 51, 53, 125),
+                                                                    ),
+                                                                  )
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            Positioned(
+                                                              top: -5,
+                                                              right: -5,
+                                                              child: Checkbox(
+                                                                shape: RoundedRectangleBorder(
+                                                                  borderRadius: BorderRadius.circular(5),
+                                                                  side: const BorderSide(
+                                                                    color: Color.fromARGB(255, 237, 238, 255),
+                                                                  ),
                                                                 ),
-                                                              )
-                                                            ],
-                                                          ),
+                                                                activeColor: Color(0xff33357D),
+                                                                checkColor: Colors.white,
+                                                                value: checkedList[0],
+                                                                onChanged: (newValue) {
+                                                                  setState(() {
+                                                                    onCheckboxChanged(0, newValue ?? false);
+                                                                  });
+                                                                },
+                                                              ),
+                                                            ),
+                                                          ],
                                                         ),
-                                                      ],
+                                                      ),
                                                     ),
-                                                  )
+                                                    SizedBox(width: 20),
+                                                    Expanded(
+                                                      flex: 1,
+                                                      child: Container(
+                                                        decoration: BoxDecoration(
+                                                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                                                          color: Color.fromARGB(255, 255, 246, 221),
+                                                          boxShadow: checkedList[1]
+                                                              ? [
+                                                            BoxShadow(
+                                                              color: Color(0xff2D2F74).withOpacity(0.2),
+                                                              spreadRadius: 2,
+                                                              blurRadius: 8,
+                                                              offset: Offset(0, 4),
+                                                            ),
+                                                          ]
+                                                              : [],
+                                                        ),
+                                                        child: Stack(
+                                                          children: [
+                                                            Align(
+                                                              alignment: Alignment.center,
+                                                              child: Column(
+                                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                                children: [
+                                                                  Image.asset(
+                                                                    'assets/comunity_notification_images/community_notify_email_icon.png',
+                                                                    height: 60,
+                                                                    width: 60,
+                                                                  ),
+                                                                  SizedBox(height: 20,),
+                                                                  Text(
+                                                                    "Email",
+                                                                    style: TextStyle(
+                                                                      fontWeight: FontWeight.bold,
+                                                                      fontSize: 12,
+                                                                      fontFamily: 'Roboto-Medium',
+                                                                      color: Color.fromARGB(255, 51, 53, 125),
+                                                                    ),
+                                                                  )
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            Positioned(
+                                                              top: -5,
+                                                              right: -5,
+                                                              child: Checkbox(
+                                                                shape: RoundedRectangleBorder(
+                                                                  borderRadius: BorderRadius.circular(5),
+                                                                  side: const BorderSide(
+                                                                    color: Color.fromARGB(255, 237, 238, 255),
+                                                                  ),
+                                                                ),
+                                                                activeColor: Color(0xff33357D),
+                                                                checkColor: Colors.white,
+                                                                value: checkedList[1],
+                                                                onChanged: (newValue) {
+                                                                  setState(() {
+                                                                    onCheckboxChanged(1, newValue ?? false);
+                                                                  });
+                                                                },
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+
                                                 ],
                                               )
                                           ),
@@ -423,6 +523,7 @@ class _MemberScanState extends State<MemberScan> {
                                     ),
                                   ),
                                 ),
+
                                 Expanded(
                                   child: GestureDetector(
                                     onTap:(){
@@ -913,6 +1014,49 @@ class CardWithUrl extends StatelessWidget {
   }
 }
 
+Future<void> sendPushNotification(
+    String deviceToken,
+    String title,
+    String body,
+    ) async {
+  const serverKey = 'AAAAIKvIVjk:APA91bEGk6TGIeGxs_RZzV07un8Zs5AYUhdjnDFBAqPs8BYEqtmYJAPGDsM8J4C_0-mj71JFH1I_DmTGjpBmtofMiTKYjOJI1ueR7pzgvk0ruuOsXJbj1hDAxkI0CHuwaghBNU3MFhgN';
+
+  final url = Uri.parse('https://fcm.googleapis.com/fcm/send');
+
+  final headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'key=$serverKey',
+  };
+
+  final payload = {
+    'notification': {
+      'title': title,
+      'body': body,
+    },
+    'to': deviceToken
+    // 'data': {
+    //   'click_action': 'FLUTTER_NOTIFICATION_CLICK',
+    //   'page': 'notification',
+    // },
+  };
+
+  final response = await http.post(
+    url,
+    headers: headers,
+    body: json.encode(payload),
+  );
+
+  if (response.statusCode == 200) {
+    print('Push notification sent successfully');
+  } else {
+    print('Error sending push notification');
+  }
+}
+
+
+String title = "MetaOps";
+String body = "Manish invited you to join Panchayat Community";
+
 
 // Social Widget
 class SocialInvitation extends StatelessWidget {
@@ -994,6 +1138,7 @@ class SocialInvitation extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       // Handle click event here
+                      sendPushNotification(deviceToken, title, body);
                     },
                     child: Image.asset(
                       'assets/onboard_member_arrow_icon.png',
@@ -1094,6 +1239,7 @@ class ManualInvitation extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       // Handle click event here
+                      Navigator.pushNamed(context, '/user_details');
                     },
                     child: Image.asset(
                       'assets/onboard_member_arrow_icon.png',

@@ -155,12 +155,15 @@ class _NotificationPageState extends State<NotificationPage> {
                                 color: Color.fromARGB(255, 173, 173, 173),
                               ),
                             ),
-                            Text(
-                              notifications[index].pageName,
-                              style: const TextStyle(
-                                fontFamily: 'Roboto-Medium',
-                                fontSize: 12,
-                                color: Color.fromARGB(255, 43, 47, 111),
+                            Flexible(
+                              child: Text(
+                                notifications[index].pageName,
+                                style: const TextStyle(
+                                  fontFamily: 'Roboto-Medium',
+                                  fontSize: 12,
+                                  color: Color.fromARGB(255, 43, 47, 111),
+                                  overflow: TextOverflow.ellipsis
+                                ),
                               ),
                             ),
                           ],
