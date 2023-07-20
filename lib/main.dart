@@ -2,10 +2,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:metaops/comminuty_notification%20services.dart';
 import 'package:metaops/screens/community_invitation_details_page.dart';
+import 'package:metaops/screens/community_pollinsights_page.dart';
 import 'package:metaops/screens/community_user_details.dart';
 import 'screens/ConvertPage.dart';
 import 'screens/MemberScreenPage.dart';
 import 'screens/ScanPage.dart';
+import 'screens/community_duplicate_page.dart';
 import 'screens/comunity_notification_screen.dart';
 
 
@@ -33,7 +35,9 @@ class MyApp extends StatelessWidget {
         //'/' : (context) => const PopUpScreen(),
         '/notification':(context) => NotificationPage(),
         '/user_details':(context) => const UserDetails(),
-        '/invitation_detail': (context) => const InvitationDetails()
+        '/invitation_detail': (context) => const InvitationDetails(),
+        '/poll_insight': (context) => const PollInsights(),
+        '/dupliate': (context) => const DuplicatePoll(),
       },
     );
   }
