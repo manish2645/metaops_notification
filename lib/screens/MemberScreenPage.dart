@@ -40,8 +40,9 @@ class _MemberScanState extends State<MemberScan> {
 
   @override
   Widget build(BuildContext context) {
-
     double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double minSize = screenWidth < screenHeight ? screenWidth : screenHeight;
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
@@ -268,7 +269,7 @@ class _MemberScanState extends State<MemberScan> {
                                           ),
                                           content: Container(
                                               padding: EdgeInsets.symmetric(horizontal: 10),
-                                              height: screenHeight*0.30,
+                                              height: screenHeight*0.26,
                                               width: MediaQuery.of(context).size.width*0.90,
                                               child: Column(
                                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -298,6 +299,8 @@ class _MemberScanState extends State<MemberScan> {
                                             Expanded(
                                               child: Container(
                                                 padding: EdgeInsets.all(10),
+                                                width: minSize,
+                                                height: minSize,
                                                 child: Row(
                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -345,8 +348,9 @@ class _MemberScanState extends State<MemberScan> {
                                                                 ],
                                                               ),
                                                             ),
-                                                            Align(
-                                                              alignment: Alignment.topRight,
+                                                            Positioned(
+                                                              top:  -8,
+                                                              right: -8,
                                                               child: Checkbox(
                                                                 shape: RoundedRectangleBorder(
                                                                   borderRadius: BorderRadius.circular(5),
@@ -412,8 +416,9 @@ class _MemberScanState extends State<MemberScan> {
                                                                 ],
                                                               ),
                                                             ),
-                                                            Align(
-                                                              alignment: Alignment.topRight,
+                                                            Positioned(
+                                                              top: -8,
+                                                              right: -8,
                                                               child: Checkbox(
                                                                 shape: RoundedRectangleBorder(
                                                                   borderRadius: BorderRadius.circular(5),
@@ -691,7 +696,7 @@ class _MemberScanState extends State<MemberScan> {
                                     Expanded(
                                       child: GestureDetector(
                                         onTap:(){
-
+                                          Navigator.pushNamed(context, '/poll_insight');
                                         },
                                         child: Row(
                                           crossAxisAlignment: CrossAxisAlignment.center,
