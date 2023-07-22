@@ -1359,7 +1359,8 @@ class _BulkInvitationState extends State<BulkInvitation> {
                     ),
                     const SizedBox(height: 10),
                     SizedBox(
-                      height: 200,
+                      height:200,
+                      width: MediaQuery.of(context).size.width,
                       child: TabBarView(
                         children: [
                           Column(
@@ -1407,13 +1408,15 @@ class _BulkInvitationState extends State<BulkInvitation> {
                                     width: 20,
                                   ),
                                   const SizedBox(width: 9),
-                                  const Text(
-                                    "Upload list of members details in CSV format to invite.",
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      fontFamily: 'Roboto-Regular',
-                                      fontWeight: FontWeight.normal,
-                                      color: Color.fromARGB(255, 177,179,183),
+                                  Expanded(
+                                    child: const Text(
+                                      "Upload list of members details in CSV format to invite.",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontFamily: 'Roboto-Regular',
+                                        fontWeight: FontWeight.normal,
+                                        color: Color.fromARGB(255, 177,179,183),
+                                      ),
                                     ),
                                   ),
                                 ],

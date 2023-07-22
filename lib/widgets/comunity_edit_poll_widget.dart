@@ -108,68 +108,70 @@ class _CustomDialogState extends State<CustomDialog> with SingleTickerProviderSt
             child: TabBarView(
               controller: _tabController,
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "Close poll on schedule date",
-                        style: TextStyle(
-                          fontFamily: 'Lato-Medium',
-                          fontSize: 14,
-                          fontWeight: FontWeight.normal,
-                          color: Color.fromARGB(255, 40, 40, 40),
+                SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Close poll on schedule date",
+                          style: TextStyle(
+                            fontFamily: 'Lato-Medium',
+                            fontSize: 14,
+                            fontWeight: FontWeight.normal,
+                            color: Color.fromARGB(255, 40, 40, 40),
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 15,),
-                      TextFormField(
-                        controller: _dateController,
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontFamily: 'Roboto-Light',
-                        ),
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(15),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                              borderSide: BorderSide.none
+                        const SizedBox(height: 15,),
+                        TextFormField(
+                          controller: _dateController,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontFamily: 'Roboto-Light',
                           ),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color.fromRGBO(51, 53 , 125, 0.2)
-                              )
-                          ),
-                          filled: true,
-                          fillColor: const Color.fromARGB(255,249,249,249),
-                          labelText: 'dd-mm-yyyy',
-                          labelStyle: const TextStyle(
-                              fontSize: 12,
-                              fontFamily: 'Roboto-Light',
-                              color: Color.fromARGB(255,173,173,173)
-                          ),
-                          suffixIcon: Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: ImageIcon(
-                              AssetImage('assets/commnunity_edit_poll_images/comunity_editpoll_date_icon.png'),
-                              size: 13,
-                              color: Color.fromARGB(255, 177, 177, 177),
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.all(15),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                                borderSide: BorderSide.none
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Color.fromRGBO(51, 53 , 125, 0.2)
+                                )
+                            ),
+                            filled: true,
+                            fillColor: const Color.fromARGB(255,249,249,249),
+                            labelText: 'dd-mm-yyyy',
+                            labelStyle: const TextStyle(
+                                fontSize: 12,
+                                fontFamily: 'Roboto-Light',
+                                color: Color.fromARGB(255,173,173,173)
+                            ),
+                            suffixIcon: Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: ImageIcon(
+                                AssetImage('assets/commnunity_edit_poll_images/comunity_editpoll_date_icon.png'),
+                                size: 13,
+                                color: Color.fromARGB(255, 177, 177, 177),
+                              ),
                             ),
                           ),
+                          readOnly: true,
+                          onTap: () {
+                            _showDatePicker(context);
+                          },
+                          validator: (String? value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please select the from date';
+                            }
+                            return null;
+                          },
                         ),
-                        readOnly: true,
-                        onTap: () {
-                          _showDatePicker(context);
-                        },
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please select the from date';
-                          }
-                          return null;
-                        },
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 //Result Tab
